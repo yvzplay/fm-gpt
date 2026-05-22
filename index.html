@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FM Türkiye — Süper Lig Menajer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========== INTRO SCREEN ========== -->
+  <div id="intro-screen">
+    <div class="intro-logo">🏆</div>
+    <div class="intro-title">FM TÜRKİYE</div>
+    <div class="intro-sub">Süper Lig Menajer Simülasyonu</div>
+    <div class="intro-actions">
+      <button class="btn-primary" onclick="showTeamSelect()" style="padding:0.8rem 2rem;font-size:1rem;">🎮 Yeni Oyun</button>
+      <button class="btn-sm" onclick="tryLoadGame()" style="padding:0.8rem 1.5rem;font-size:1rem;" id="continue-btn">▶ Devam Et</button>
+    </div>
+    <div style="margin-top:2rem;color:#4a5568;font-size:0.85rem;">Türkiye Süper Ligi • 10 Takım • Detaylı Taktik & Transfer</div>
+  </div>
+
+  <!-- ========== TEAM SELECT SCREEN ========== -->
+  <div id="team-select-screen" style="display:none;">
+    <div class="team-select-title">🏟️ Takımınızı Seçin</div>
+    <div class="team-grid" id="team-grid"></div>
+    <button class="btn-sm" onclick="showIntro()" style="margin-top:1.5rem;">← Geri</button>
+  </div>
+
+  <!-- ========== MAIN GAME ========== -->
+  <div id="game-container" style="display:none;">
+    <div id="top-bar"></div>
+    <aside id="sidebar"></aside>
+    <main id="main-content"></main>
+  </div>
+
+  <!-- ========== LIVE MATCH OVERLAY ========== -->
+  <div id="match-overlay" class="hidden"></div>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="js/data.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/match.js"></script>
+  <script src="js/ui.js"></script>
+  <script>
+    // ====== BOOT LOGIC ======
+    function showIntro() {
+      document.getElementById("intro-screen").style.display = "flex";
+      document.getElementById("team-select-screen").style.display = "none";
+      document.getElementById("game-container").style.display = "none";
+    }
+
+    function tryLoadGame() {
+      if (loadGame()) {
+        launchGame();
+      } else {
+        showToast("Kayıtlı oyun bulunamadı.", "error");
+      }
+    }
+
+    function showTeamSelect() {
+      document.getElementById("intro-screen").style.display = "none";
+      document.getElementById("team-select-screen").style.display = "flex";
+      renderTeamSelect();
+    }
+
+    function renderTeamSelect() {
+      const grid = document.getElementById("team-grid");
+      grid.innerHTML = TEAMS.map(t => {
+        const strength = Math.round(
+          PLAYERS_INIT.filter(p => p.teamId === t.id).slice(0,11).reduce((s,p) => s + calcOverall(p, p.pos), 0) /
+          Math.min(11, PLAYERS_INIT.filter(p => p.teamId === t.id).length)
+        );
+        const stars = "⭐".repeat(Math.min(5, Math.round(t.prestige / 20)));
+        return `
+          <div class="team-card" onclick="selectTeam(${t.id})" style="border-color:${t.color}33;">
+            <div class="team-badge-lg">${t.badge}</div>
+            <div class="team-name-lg">${t.name}</div>
+            <div class="team-prestige">${stars}</div>
+            <div class="team-stats-sm">
+              <span>⚽ Güç: ${strength}</span>
+              <span>💶 €${fmtVal(t.budget)}K</span>
+            </div>
+            <div class="team-budget">🏟️ ${t.stadium}</div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function selectTeam(teamId) {
+      if (!confirm(`${TEAMS.find(t=>t.id===teamId).name} ile devam etmek istiyor musunuz?`)) return;
+      initGame(teamId);
+      launchGame();
+    }
+
+    function launchGame() {
+      document.getElementById("intro-screen").style.display = "none";
+      document.getElementById("team-select-screen").style.display = "none";
+      document.getElementById("game-container").style.display = "grid";
+      renderApp();
+    }
+
+    // Check for save on load
+    window.addEventListener("DOMContentLoaded", () => {
+      const hasSave = localStorage.getItem("fm_turkey_save");
+      document.getElementById("continue-btn").style.opacity = hasSave ? "1" : "0.4";
+    });
+  </script>
+</body>
+</html>
