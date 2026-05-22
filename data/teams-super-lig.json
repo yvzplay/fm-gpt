@@ -1,0 +1,116 @@
+{
+  "league": "Turkish Super Lig",
+  "season": 2023,
+  "teams": [
+    {
+      "id": 1,
+      "name": "Fenerbahçe",
+      "city": "Istanbul",
+      "founded": 1907,
+      "stadium": "Ulker Stadyumu",
+      "capacity": 61619,
+      "coach": "TBD",
+      "budget": 50000000,
+      "league_position": 1
+    },
+    {
+      "id": 2,
+      "name": "Galatasaray",
+      "city": "Istanbul",
+      "founded": 1905,
+      "stadium": "Türk Telekom Arena",
+      "capacity": 52695,
+      "coach": "TBD",
+      "budget": 48000000,
+      "league_position": 2
+    },
+    {
+      "id": 3,
+      "name": "Beşiktaş",
+      "city": "Istanbul",
+      "founded": 1903,
+      "stadium": "Vodafone Park",
+      "capacity": 31518,
+      "coach": "TBD",
+      "budget": 45000000,
+      "league_position": 3
+    },
+    {
+      "id": 4,
+      "name": "Trabzonspor",
+      "city": "Trabzon",
+      "founded": 1967,
+      "stadium": "Uzunov Stadium",
+      "capacity": 40928,
+      "coach": "TBD",
+      "budget": 40000000,
+      "league_position": 4
+    },
+    {
+      "id": 5,
+      "name": "Medipol Başakşehir",
+      "city": "Istanbul",
+      "founded": 1990,
+      "stadium": "Basaksehir Fatih Terim Stadium",
+      "capacity": 17361,
+      "coach": "TBD",
+      "budget": 35000000,
+      "league_position": 5
+    },
+    {
+      "id": 6,
+      "name": "Adana Demirspor",
+      "city": "Adana",
+      "founded": 1940,
+      "stadium": "Adana Stadium",
+      "capacity": 32850,
+      "coach": "TBD",
+      "budget": 30000000,
+      "league_position": 6
+    },
+    {
+      "id": 7,
+      "name": "Fatih Karagümrük",
+      "city": "Istanbul",
+      "founded": 1969,
+      "stadium": "Nef Stadium",
+      "capacity": 16530,
+      "coach": "TBD",
+      "budget": 25000000,
+      "league_position": 7
+    },
+    {
+      "id": 8,
+      "name": "Alanyaspor",
+      "city": "Alanya",
+      "founded": 1948,
+      "stadium": "Bahçeşehir Okulları Alanya Stadium",
+      "capacity": 27405,
+      "coach": "TBD",
+      "budget": 22000000,
+      "league_position": 8
+    },
+    {
+      "id": 9,
+      "name": "Gaziantep FK",
+      "city": "Gaziantep",
+      "founded": 1988,
+      "stadium": "Stadyum Gaziantep",
+      "capacity": 35067,
+      "coach": "TBD",
+      "budget": 20000000,
+      "league_position": 9
+    },
+    {
+      "id": 10,
+      "name": "Pendikspor",
+      "city": "Istanbul",
+      "founded": 2014,
+      "stadium": "Pendik Stadium",
+      "capacity": 16800,
+      "coach": "TBD",
+      "budget": 18000000,
+      "league_position": 10
+    }
+  ]
+}

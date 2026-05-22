@@ -1,0 +1,31 @@
+{
+  "name": "fm-gpt",
+  "version": "0.1.0",
+  "description": "Football Manager simulation game - web-based",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "backend": "nodemon backend/server.js",
+    "frontend": "cd frontend && npm start",
+    "test": "jest"
+  },
+  "keywords": [
+    "football",
+    "manager",
+    "simulation",
+    "game"
+  ],
+  "author": "yvzplay",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "concurrently": "^7.6.0",
+    "jest": "^29.5.0"
+  }
+}
